@@ -30,16 +30,16 @@ def _find_getch():
 getch = _find_getch()
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-INTRO_STR = 'Starting collection. Controls:\n\
-<Enter>: Record someone entering\n\
-<Space>: Record someone leaving\n\
-<Esc>: Stop collection and record data\n'
+INTRO_STR = """Starting collection. Controls:
+<Enter>: Record someone entering 
+<Space>: Record someone leaving
+<Esc>: Stop collection and record data"""
 
 CSV_HEADINGS = ['Timestamp', 'Direction']
 
-ENTER_CHAR = b'\r'
-SPACE_CHAR = b' '
-ESC_CHAR = b'\x1b'
+ENTER_CHAR = '\r'
+SPACE_CHAR = ' '
+ESC_CHAR = '\x1b'
 
 class Direction(Enum):
     IN = 'IN'
@@ -69,7 +69,7 @@ def run_collection():
                 time = datetime.now()
                 event = Event(time,direction)
                 print('Recorded ' + str(event))
-                writer.writerow([event.time.strftime('%H:%m:%f'), event.direction.value])
+                writer.writerow([str(time.time()), event.direction.value])
             elif command == ESC_CHAR:
                 print('Received quit character, shutting down...')
                 break
