@@ -37,9 +37,14 @@ INTRO_STR = """Starting collection. Controls:
 
 CSV_HEADINGS = ['Timestamp', 'Direction']
 
-ENTER_CHAR = '\r'
-SPACE_CHAR = ' '
-ESC_CHAR = '\x1b'
+if os.name == 'nt':
+    ENTER_CHAR = b'\r'
+    SPACE_CHAR = b' '
+    ESC_CHAR = b'\x1b'
+else:
+    ENTER_CHAR = '\r'
+    SPACE_CHAR = ' '
+    ESC_CHAR = '\x1b'
 
 class Direction(Enum):
     IN = 'IN'
