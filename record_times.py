@@ -70,7 +70,7 @@ def run_collection():
         while True:
             command = getch()
             if command == ENTER_CHAR or command == SPACE_CHAR:
-                direction = Direction.IN if command == ENTER_CHAR else direction.OUT
+                direction = Direction.IN if command == ENTER_CHAR else Direction.OUT
                 time = datetime.now()
                 event = Event(time,direction)
                 print('Recorded ' + str(event))
