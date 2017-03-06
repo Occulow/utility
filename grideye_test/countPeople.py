@@ -2,15 +2,12 @@
 
 import sys
 import numpy
-import time
-import matplotlib.pyplot as plt
 import math
-from matplotlib import animation
 from Queue import *
 
 def count(q, data, maxValIn, In):
     count = 0
-    listFrame = []
+    listFrame = [] #to prevent double counting with consecutive frames
     pix = 0 if In else 7
     while not q.empty():
         i = q.get()
@@ -38,7 +35,7 @@ def main():
 
     data = numpy.genfromtxt(sys.argv[1], delimiter=",")
 
-    #create a queue for every person that walks in
+    #create a queue for every person that walks in/out
     qIn = Queue() 
     qOut = Queue()
 
