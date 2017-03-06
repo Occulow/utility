@@ -21,12 +21,11 @@ def count(q, data, maxValIn, In):
                 for j in range(0, 8):
                     if frame[j][pix] >= maxValIn:
                         countPixel += 1
-                if countPixel == 3:
-                    if not listFrame or (listFrame[-1] != i-1  and listFrame[-1] != i):
+                if not listFrame or (listFrame[-1] != i-1  and listFrame[-1] != i):
+                    if countPixel == 3:
                         count += 1
                         listFrame.append(i)
-                elif countPixel > 3:
-                    if not listFrame or (listFrame[-1] != i-1 and listFrame[-1] != i):   
+                    elif countPixel > 3:
                         count += 2
                         listFrame.append(i)
     return count
@@ -43,8 +42,8 @@ def main():
     qIn = Queue() 
     qOut = Queue()
 
-    maxValIn = 29.0
-    maxValOut = 28.5
+    maxValIn = 30.25
+    maxValOut = 30.25
     for i in range(len(data)):
         frame = data[i].reshape((8,8))
         for j in range(0,8):
