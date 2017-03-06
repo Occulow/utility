@@ -24,7 +24,7 @@ def main():
   
   # Show heatmap frame by frame, redrawing every 0.1 seconds (10 FPS)
   print "Writing to: " + sys.argv[1] + ".mp4"
-  with writer.saving(fig, (sys.argv[1] + ".mp4"), 100):
+  with writer.saving(fig, (sys.argv[1] + ".mp4"), 150):
     for i in range(len(data)):
       im.set_array(data[i].reshape((8,8)))
       writer.grab_frame()
