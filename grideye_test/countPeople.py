@@ -2,7 +2,14 @@
 
 import sys
 import numpy
+<<<<<<< HEAD
+import time
+import matplotlib.pyplot as plt
 import math
+from matplotlib import animation
+=======
+import math
+>>>>>>> 8292c0a5e743b056912c7354d97122f4cd6dca7d
 from Queue import *
 
 def count(q, data, maxValIn, In):
