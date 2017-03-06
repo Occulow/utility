@@ -4,7 +4,6 @@ import sys
 import numpy
 import time
 import matplotlib.pyplot as plt
-from matplotlib import animation
 
 def main():
   if len(sys.argv) < 2:
