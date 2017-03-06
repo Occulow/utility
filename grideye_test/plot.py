@@ -14,9 +14,9 @@ def main():
   
   fig = plt.figure()
   ax = fig.add_subplot(111)
-  im = ax.imshow(data[0].reshape((8,8)))
+  im = ax.imshow(numpy.zeros((8,8)), cmap="hot")
+  im.set_clim(0,10)
   plt.show(block=False)
-  
   
   # Show heatmap frame by frame, redrawing every 0.1 seconds (10 FPS)
   for i in range(len(data)):
@@ -27,4 +27,3 @@ def main():
 if __name__ == "__main__":
   main()
     
-
