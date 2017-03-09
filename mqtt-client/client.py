@@ -1,7 +1,6 @@
 import paho.mqtt.client as mqtt
 import os
 import ssl
-import glob
 
 cert_path = "."
 
