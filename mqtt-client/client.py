@@ -24,7 +24,7 @@ def on_message(client, userdata, msg):
 if __name__ == '__main__':
     client = mqtt.Client()
     client.username_pw_set(USERNAME, PASSWORD)
-    client.tls_set(cert)
+    #client.tls_set(cert)
     client.tls_insecure_set(True)
     client.on_connect = on_connect
     client.on_message = on_message
