@@ -5,7 +5,8 @@ import ssl
 cert_path = "."
 
 USERNAME='team21'
-PASSWORD='BobsBurgers5598'
+with open('pass', 'r') as f:
+    PASSWORD=f.read().strip()
 HOST='openchirp.andrew.cmu.edu'
 PORT=1883
 KEEPALIVE=60
@@ -19,7 +20,7 @@ def on_connect(client, userdata, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
+    print(str(msg.topic.encode('utf-8'))+" "+str(msg.payload))
 
 if __name__ == '__main__':
     client = mqtt.Client()
