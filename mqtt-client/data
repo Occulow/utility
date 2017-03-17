@@ -1,0 +1,42 @@
+b'application/0000000000000100/node/1122334455667799/rxinfo' b'{"devEUI":"1122334455667799","adr":false,"fCnt":13,"rxInfo":[{"mac":"d00d8badf00d0001","time":"2017-03-
+17T16:46:24.624994Z","timestamp":1752554660,"frequency":902500000,"channel":1,"rfChain":0,"crcStatus":1,"codeRate":"4/5","rssi":-47,"loRaSNR":10.2,"size":14,"dataRate
+":{"modulation":"LORA","spreadFactor":10,"bandwidth":125}},{"mac":"d00d8badf00d0002","time":"2017-03-17T17:47:06.352965Z","timestamp":2949675772,"frequency":902500000
+,"channel":1,"rfChain":0,"crcStatus":1,"codeRate":"4/5","rssi":-99,"loRaSNR":-4,"size":14,"dataRate":{"modulation":"LORA","spreadFactor":10,"bandwidth":125}}]}'
+b'application/0000000000000100/node/1122334455667799/rx' b'{"devEUI":"1122334455667799","time":"2017-03-17T16:46:24.624994Z","fPort":1,"gatewayCount":2,"rssi":-47,"da
+ta":"DQ=="}'
+b'application/0000000000000100/node/1122334455667799/rxinfo' b'{"devEUI":"1122334455667799","adr":false,"fCnt":14,"rxInfo":[{"mac":"d00d8badf00d0001","time":"2017-03-
+17T16:46:33.127958Z","timestamp":1761058012,"frequency":903700000,"channel":7,"rfChain":1,"crcStatus":1,"codeRate":"4/5","rssi":-48,"loRaSNR":7.8,"size":14,"dataRate"
+:{"modulation":"LORA","spreadFactor":10,"bandwidth":125}},{"mac":"d00d8badf00d0002","time":"2017-03-17T17:47:14.85633Z","timestamp":2958179100,"frequency":903700000,"
+channel":7,"rfChain":1,"crcStatus":1,"codeRate":"4/5","rssi":-109,"loRaSNR":4.5,"size":14,"dataRate":{"modulation":"LORA","spreadFactor":10,"bandwidth":125}},{"mac":"
+d00d8badf00d0004","time":"2017-03-17T17:47:14.856328Z","timestamp":2952916668,"frequency":903700000,"channel":7,"rfChain":1,"crcStatus":1,"codeRate":"4/5","rssi":-113
+,"loRaSNR":-4.5,"size":14,"dataRate":{"modulation":"LORA","spreadFactor":10,"bandwidth":125}}]}'
+b'application/0000000000000100/node/1122334455667799/rx' b'{"devEUI":"1122334455667799","time":"2017-03-17T16:46:33.127958Z","fPort":1,"gatewayCount":3,"rssi":-48,"da
+ta":"DQ=="}'
+b'application/0000000000000100/node/1122334455667799/rxinfo' b'{"devEUI":"1122334455667799","adr":false,"fCnt":15,"rxInfo":[{"mac":"d00d8badf00d0001","time":"2017-03-
+17T16:46:41.630856Z","timestamp":1769555396,"frequency":903500000,"channel":6,"rfChain":1,"crcStatus":1,"codeRate":"4/5","rssi":-44,"loRaSNR":9.2,"size":14,"dataRate"
+:{"modulation":"LORA","spreadFactor":10,"bandwidth":125}},{"mac":"d00d8badf00d0002","time":"2017-03-17T17:47:23.353716Z","timestamp":2966676452,"frequency":903500000,
+"channel":6,"rfChain":1,"crcStatus":1,"codeRate":"4/5","rssi":-106,"loRaSNR":-1.8,"size":14,"dataRate":{"modulation":"LORA","spreadFactor":10,"bandwidth":125}}]}'
+b'application/0000000000000100/node/1122334455667799/rx' b'{"devEUI":"1122334455667799","time":"2017-03-17T16:46:41.630856Z","fPort":1,"gatewayCount":2,"rssi":-44,"da
+ta":"DQ=="}'
+b'application/0000000000000100/node/1122334455667799/rxinfo' b'{"devEUI":"1122334455667799","adr":false,"fCnt":16,"rxInfo":[{"mac":"d00d8badf00d0001","time":"2017-03-
+17T16:46:50.124184Z","timestamp":1778056436,"frequency":903100000,"channel":4,"rfChain":1,"crcStatus":1,"codeRate":"4/5","rssi":-51,"loRaSNR":10.8,"size":14,"dataRate
+":{"modulation":"LORA","spreadFactor":10,"bandwidth":125}},{"mac":"d00d8badf00d0002","time":"2017-03-17T17:47:31.85476Z","timestamp":2975177460,"frequency":903100000,
+"channel":4,"rfChain":1,"crcStatus":1,"codeRate":"4/5","rssi":-108,"loRaSNR":-3.5,"size":14,"dataRate":{"modulation":"LORA","spreadFactor":10,"bandwidth":125}}]}'
+b'application/0000000000000100/node/1122334455667799/rx' b'{"devEUI":"1122334455667799","time":"2017-03-17T16:46:50.124184Z","fPort":1,"gatewayCount":2,"rssi":-51,"da
+ta":"DQ=="}'
+b'application/0000000000000100/node/1122334455667799/rxinfo' b'{"devEUI":"1122334455667799","adr":false,"fCnt":17,"rxInfo":[{"mac":"d00d8badf00d0001","time":"2017-03-
+17T16:46:58.627038Z","timestamp":1786556124,"frequency":903700000,"channel":7,"rfChain":1,"crcStatus":1,"codeRate":"4/5","rssi":-42,"loRaSNR":8.8,"size":14,"dataRate"
+:{"modulation":"LORA","spreadFactor":10,"bandwidth":125}},{"mac":"d00d8badf00d0002","time":"2017-03-17T17:47:40.354451Z","timestamp":2983677116,"frequency":903700000,
+"channel":7,"rfChain":1,"crcStatus":1,"codeRate":"4/5","rssi":-105,"loRaSNR":2.2,"size":14,"dataRate":{"modulation":"LORA","spreadFactor":10,"bandwidth":125}},{"mac":
+"d00d8badf00d0004","time":"2017-03-17T17:47:40.354455Z","timestamp":2978414748,"frequency":903700000,"channel":7,"rfChain":1,"crcStatus":1,"codeRate":"4/5","rssi":-11
+3,"loRaSNR":-6,"size":14,"dataRate":{"modulation":"LORA","spreadFactor":10,"bandwidth":125}}]}'
+b'application/0000000000000100/node/1122334455667799/rx' b'{"devEUI":"1122334455667799","time":"2017-03-17T16:46:58.627038Z","fPort":1,"gatewayCount":3,"rssi":-42,"da
+ta":"DQ=="}'
+b'application/0000000000000100/node/1122334455667799/rxinfo' b'{"devEUI":"1122334455667799","adr":false,"fCnt":18,"rxInfo":[{"mac":"d00d8badf00d0001","time":"2017-03-
+17T16:47:07.130745Z","timestamp":1795058820,"frequency":903700000,"channel":7,"rfChain":1,"crcStatus":1,"codeRate":"4/5","rssi":-42,"loRaSNR":9,"size":14,"dataRate":{
+"modulation":"LORA","spreadFactor":10,"bandwidth":125}},{"mac":"d00d8badf00d0002","time":"2017-03-17T17:47:48.857151Z","timestamp":2992179780,"frequency":903700000,"c
+hannel":7,"rfChain":1,"crcStatus":1,"codeRate":"4/5","rssi":-115,"loRaSNR":0,"size":14,"dataRate":{"modulation":"LORA","spreadFactor":10,"bandwidth":125}},{"mac":"d00
+d8badf00d0004","time":"2017-03-17T17:47:48.857151Z","timestamp":2986917428,"frequency":903700000,"channel":7,"rfChain":1,"crcStatus":1,"codeRate":"4/5","rssi":-115,"l
+oRaSNR":-6.8,"size":14,"dataRate":{"modulation":"LORA","spreadFactor":10,"bandwidth":125}}]}'
+b'application/0000000000000100/node/1122334455667799/rx' b'{"devEUI":"1122334455667799","time":"2017-03-17T16:47:07.130745Z","fPort":1,"gatewayCount":3,"rssi":-42,"da
+ta":"DQ=="}'
