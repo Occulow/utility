@@ -2,37 +2,85 @@
 
 import sys
 import numpy
-<<<<<<< HEAD
 import time
-import matplotlib.pyplot as plt
 import math
-from matplotlib import animation
-=======
-import math
->>>>>>> 8292c0a5e743b056912c7354d97122f4cd6dca7d
 from Queue import *
 
-def count(q, data, maxValIn, In):
+# values for first-median
+# maxValIn = 2.5
+# maxValInUpDownCells = 1.7
+# maxValOutUpDownCells = 1.7
+# maxValOut = 2.3
+
+# values for third-median
+# maxValIn = 2.5
+# maxValInUpDownCells = 1.7
+# maxValOutUpDownCells = 1.5
+# maxValOut = 2.5
+
+
+def checkFrame(frame, cellVal, In, data, listFrame, i, frameNum):
+    pix = 4 if In else 3
+    if not listFrame or (listFrame[-1] < i-3):
+        # print "frame being checked = ", frameNum
+        # print frame
+        for j in xrange(0,8):
+            putInList = False
+            if cellVal < 3:
+                maxVal = cellVal - .8
+                maxValUpDownCells = cellVal - 1.75
+            else:
+                maxVal = cellVal - .5
+                maxValUpDownCells = cellVal - 1.0
+            if frame[j][pix] >= maxVal:
+                if j == 0 and frame[j+1][pix] >= maxValUpDownCells and not putInList:
+                    # print "in check 1"
+                    listFrame.append(i)
+                    putInList = True
+                    return True
+                elif j == 7 and frame[j-1][pix] >= maxValUpDownCells and not putInList:
+                    # print "in check 2"
+                    listFrame.append(i)
+                    putInList = True
+                    return True
+                elif (frame[j-1][pix] >= maxValUpDownCells or frame[j+1][pix] >= maxValUpDownCells) and not putInList:
+                    # print "in check 3"
+                    listFrame.append(i)
+                    putInList = True
+                    return True
+                else: 
+                    return False
+    return False
+
+
+
+def count(q, data, In):
     count = 0
     listFrame = [] #to prevent double counting with consecutive frames
-    pix = 0 if In else 7
     while not q.empty():
-        i = q.get()
-        for m in range(3, 10):
-            if i+m < 100:
-                frame = data[i+m].reshape((8,8))
-                countPixel = 0
-                for j in range(0, 8):
-                    if frame[j][pix] >= maxValIn:
-                        countPixel += 1
-                if not listFrame or (listFrame[-1] != i-1  and listFrame[-1] != i):
-                    if countPixel == 3:
-                        count += 1
-                        listFrame.append(i)
-                    elif countPixel > 3:
-                        count += 2
-                        listFrame.append(i)
+        (i,cellVal) = q.get()
+        if i > 3:
+            # print "i = ", i, "In = ", In
+            frame = data[i].reshape((8,8))
+            # print frame
+            frame_1 = data[i-1].reshape((8,8))
+            frame_2 = data[i-2].reshape((8,8))
+            frame_3 = data[i-3].reshape((8,8))
+            if checkFrame(frame_1, cellVal, In, data, listFrame, i, i-1):
+                # print "Adding for frame = ", i, "in checkFrame 1"
+                count += 1
+            elif checkFrame(frame_2, cellVal, In, data, listFrame, i, i-2):
+                # print "Adding for frame = ", i, "in checkFrame 2"
+                count += 1
+            elif checkFrame(frame_3, cellVal, In, data, listFrame, i, i-3):
+                # print "Adding for frame = ", i, "in checkFrame 3"
+                count += 1
     return count
+
+
+
+
+        
 
 
 
@@ -46,21 +94,59 @@ def main():
     qIn = Queue() 
     qOut = Queue()
 
-    maxValIn = 30.25
-    maxValOut = 30.25
+    maxValIn = 2.5
+    maxValInUpDownCells = 1.7
+    maxValOutUpDownCells = 1.5
+    maxValOut = 2.5
+
     for i in range(len(data)):
         frame = data[i].reshape((8,8))
+        frameInPut = False
+        frameOutPut = False
         for j in range(0,8):
-            if frame[j][7] >= maxValIn:
-                qIn.put(i, False)
-                break
-            if frame[j][0] >= maxValOut:
-                qOut.put(i, False) 
-                break
+            if frame[j][2] >= maxValIn and not frameInPut:
+                cellVal = frame[j][2]
+                if j == 0 and frame[j+1][2] >= maxValInUpDownCells:
+                    # print "for putting in qIn:  i = ", i
+                    # print frame
+                    qIn.put((i, cellVal), False)
+                    frameInPut = True
+                elif j == 7 and frame[j-1][2] >= maxValInUpDownCells:
+                    # print "for putting in qIn:  i = ", i
+                    # print frame
+                    qIn.put((i, cellVal), False)
+                    frameInPut = True
+                elif  (j > 0 and frame[j-1][2] >= maxValInUpDownCells) or (j < 7 and frame[j+1][4] >= maxValInUpDownCells):
+                    # print "for putting in qIn:  i = ", i
+                    # print frame
+                    qIn.put((i, cellVal), False)
+                    frameInPut = True
+            if frame[j][5] >= maxValOut and not frameOutPut:
+                cellVal = frame[j][5]
+                # print "Considering putting in qOut:  i = ", i
+                # print frame
+                if j == 0 and frame[j+1][5] >= maxValOutUpDownCells:
+                    # print "for putting in qOut:  i = ", i
+                    # print frame
+                    qOut.put((i, cellVal), False)
+                    frameOutPut = True
+                elif j == 7 and frame[j-1][5] >= maxValOutUpDownCells:
+                    # print "for putting in qOut:  i = ", i
+                    # print frame
+                    qOut.put((i, cellVal), False)
+                    frameOutPut = True
+                elif  (j > 0 and frame[j-1][5] >= maxValOutUpDownCells) or (j < 7 and frame[j+1][3] >= maxValOutUpDownCells):
+                    # print "for putting in qOut:  i = ", i
+                    # print frame
+                    qOut.put((i, cellVal), False)
+                    frameOutPut = True
+                
 
+    countIn = count(qIn, data, True)
+    countOut = count(qOut, data, False)
    
-    print 'countIn = ', count(qIn, data, maxValIn, True)
-    print 'countOut = ',  count(qOut, data, maxValOut, False)
+    print 'countIn = ', countIn
+    print 'countOut = ',  countOut
 
 if __name__ == "__main__":
   main()
