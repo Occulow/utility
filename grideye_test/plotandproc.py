@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 MEDIAN_FILTER_SIZE = 10
 
 ser = serial.Serial()
-ser.port = "/dev/tty.usbmodem1412"
+ser.port = "/dev/tty.usbmodem1422"
 ser.baudrate = 115200
 ser.dsrdtr = True
 
@@ -29,6 +29,7 @@ countBuff =[]
 startIndex = 0
 countOut = 0
 countIn = 0
+listFrame = []
 
 
 t = str(int(round(time.time() * 1000))) 
@@ -60,24 +61,22 @@ def checkFrame(frame, cellVal, In, listFrame, countOfFrame):
 
 
 
-def count(cellVall, In, countOfFrame, countOut, countIn):
-  pix = 4 if In else 3
-  listFrame = []
+def count(cellVal, In, countOfFrame, countOut, countIn, listFrame):
   if frameCount >= 3:
       frame_1 = countBuff[-1]
       frame_2 = countBuff[-2]
       frame_3 = countBuff[-3]
-      if checkFrame(frame_1, cellVall, In, listFrame, countOfFrame):
+      if checkFrame(frame_1, cellVal, In, listFrame, countOfFrame):
         if In:
           countIn += 1
         else:
           countOut += 1
-      elif checkFrame(frame_2, cellVall, In, listFrame, countOfFrame):
+      elif checkFrame(frame_2, cellVal, In, listFrame, countOfFrame):
         if In:
           countIn += 1
         else:
           countOut += 1
-      elif checkFrame(frame_3, cellVall, In, listFrame, countOfFrame):
+      elif checkFrame(frame_3, cellVal, In, listFrame, countOfFrame):
         if In:
           countIn += 1
         else:
@@ -89,7 +88,7 @@ def count(cellVall, In, countOfFrame, countOut, countIn):
 
 
 
-def countPeople(frame, countOfFrame, countOut, countIn):
+def countPeople(frame, countOfFrame, countOut, countIn, listFrame):
   maxValIn = 2.5
   maxValInUpDownCells = 1.7
   maxValOutUpDownCells = 1.5
@@ -102,25 +101,25 @@ def countPeople(frame, countOfFrame, countOut, countIn):
       cellVal = frame[j][2]
       if j == 0 and frame[j+1][2] >= maxValInUpDownCells:
         frameInPut = True
-        (countIn, countOut) = count(cellVal, True, countOfFrame, countOut, countIn)
+        (countIn, countOut) = count(cellVal, True, countOfFrame, countOut, countIn, listFrame)
       elif j == 7 and frame[j-1][2] >= maxValInUpDownCells:
         frameInPut = True
-        (countIn, countOut) = count(maxValIn, True, countOfFrame, countOut, countIn)
+        (countIn, countOut) = count(cellVal, True, countOfFrame, countOut, countIn, listFrame)
       elif  (j > 0 and frame[j-1][2] >= maxValInUpDownCells) or (j < 7 and frame[j+1][4] >= maxValInUpDownCells):
         frameInPut = True
-        (countIn, countOut) = count(maxValIn, True, countOfFrame, countOut, countIn)
+        (countIn, countOut) = count(cellVal, True, countOfFrame, countOut, countIn, listFrame)
 
     if frame[j][5] >= maxValOut and not frameOutPut:
       cellVal = frame[j][5]
       if j == 0 and frame[j+1][5] >= maxValOutUpDownCells:
         frameOutPut = True
-        (countIn, countOut) = count(maxValOut, False, countOfFrame, countOut, countIn)
+        (countIn, countOut) = count(cellVal, False, countOfFrame, countOut, countIn, listFrame)
       elif j == 7 and frame[j-1][5] >= maxValOutUpDownCells:
         frameOutPut = True
-        (countIn, countOut) = count(maxValOut, False, countOfFrame, countOut, countIn)
+        (countIn, countOut) = count(cellVal, False, countOfFrame, countOut, countIn, listFrame)
       elif  (j > 0 and frame[j-1][5] >= maxValOutUpDownCells) or (j < 7 and frame[j+1][3] >= maxValOutUpDownCells):
         frameOutPut = True
-        (countIn, countOut) = count(maxValOut, False, countOfFrame, countOut, countIn)
+        (countIn, countOut) = count(cellVal, False, countOfFrame, countOut, countIn, listFrame)
   return (countIn, countOut)
 
 
@@ -151,9 +150,14 @@ with open(fname_med, 'w') as med_file:
           countBuff.append(filtered_val)
           startIndex = frameCount - 3
 
-        (countIn, countOut) = countPeople(filtered_val, frameCount, countOut, countIn)
-        print 'countIn: ', countIn
-        print 'countOut: ', countOut
+
+        oldCountIn = countIn  
+        oldCountOut = countOut
+        (countIn, countOut) = countPeople(filtered_val, frameCount, countOut, countIn, listFrame)
+
+        if oldCountIn != countIn or oldCountOut != countOut:
+          print 'countIn: ', countIn
+          print 'countOut: ', countOut
 
         writer_med.writerow(filtered_val.flatten())
 
