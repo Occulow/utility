@@ -55,7 +55,8 @@ with open(fname_med, 'w') as med_file:
 
         oldCountIn = countIn  
         oldCountOut = countOut
-        (countIn, countOut) = counter.count_people(filtered_val)
+        counter.new_frame(filtered_val)
+        (countIn, countOut) = counter.count_people()
 
         if oldCountIn != countIn or oldCountOut != countOut:
           print "-----------------------"
