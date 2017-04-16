@@ -11,7 +11,7 @@ from people_count import PeopleCounter
 MEDIAN_FILTER_SIZE = 10
 
 ser = serial.Serial()
-ser.port = "/dev/ttyUSB0"
+ser.port = "/dev/tty.usbserial-AL02W6N5"
 ser.baudrate = 115200
 ser.dsrdtr = True
 
@@ -38,15 +38,27 @@ counter = PeopleCounter()
 current_time = datetime.datetime.now()
 last_time = current_time
 ser.readline()
+ser.readline()
+ser.readline()
 with open(fname_med, 'w') as med_file:
     writer = csv.writer(med_file, delimiter=',')
     while True:
         data = ser.readline()
-        if data[0] == "I":
+        if data[0] == "D":
             # Print info out
-            print data
-        else:
-            frame = numpy.fromstring(data, sep=",").reshape((8,8))
+            # print data
+            counts = data[2:-3]
+            counts = counts.split(",")
+            (inDelta, outDelta) = map(float, counts)
+            countIn += inDelta
+            countOut += outDelta
+            print "countIn = ", countIn
+            print "countOut = ", countOut
+        elif data[0] == "F":
+            colon_index = data.find(":")
+            frame = data[1:colon_index]
+            # print data
+            frame = numpy.fromstring(data[colon_index+1:], sep=",").reshape((8,8))
             writer.writerow(frame.flatten())
             im.set_array(frame)
             fig.canvas.draw()
@@ -54,4 +66,6 @@ with open(fname_med, 'w') as med_file:
             # current_time = datetime.datetime.now()
             # print str(1000000/(current_time - last_time).microseconds) + " FPS"
             # last_time = current_time
+        else:
+            print data
   
