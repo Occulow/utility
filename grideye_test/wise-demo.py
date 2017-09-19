@@ -111,7 +111,10 @@ def countPeople(frame, countOfFrame, countOut, countIn, listFrame):
 
 while True:
   data = ser.readline()
-  frame = numpy.fromstring(data, sep=",").reshape((8,8)) * 0.25
+  frame = numpy.fromstring(data, sep=",")
+  if len(frame) != 64:
+    continue
+  frame = frame.reshape((8,8)) * 0.25
 
   history = numpy.dstack((frame, history))[:,:,0:MEDIAN_FILTER_SIZE]
 
